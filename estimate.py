@@ -1,5 +1,30 @@
 import math
+from typing import Sequence
 import unittest
+import random
+
+def wallis(n):
+    pie = 2.0
+    for w in range(1,n+1):
+        pie *= (4*w*w)/(4*w*w - 1 )
+    return pie
+
+        
+def monte_carlo(noOfDarts):
+    pie = float()
+    distance = float()
+    circleChance =  0.0
+    origin = [0.0,0.0]
+    point = [0.0,0.0]
+    for m in range(1,noOfDarts + 1):
+        point[0] = random.random()
+        point[1] = random.random()
+        distance = math.dist(point,origin)
+        if distance < 1.0:
+            circleChance += 1.0  
+    return 4*circleChance/(noOfDarts )    
+
+
 
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
